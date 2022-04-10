@@ -25,9 +25,6 @@ jobs:
         name: Build all assets by crosscompiling them
         run: ./scripts/ci/release.sh
       -
-        name : print build target folders
-        run : "ls -al ./bin/linux/amd64"
-      -
         name: Make target binarys executable
         run: "chmod -R 777 ./bin"
       -
@@ -38,6 +35,6 @@ jobs:
           body_path: CHANGELOG.md
           token: ${{ github.token }}
           files: |
-            ./bin/darwin/amd64/komodo
-            ./bin/darwin/arm64/komodo
-            ./bin/linux/amd64/komodo
+            ./bin/darwin/amd64/komodo-darwin-amd64
+            ./bin/darwin/arm64/komodo-darwin-arm64
+            ./bin/linux/amd64/komodo-linux-amd64
