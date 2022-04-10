@@ -24,22 +24,13 @@ jobs:
       -
         name: Build all assets by crosscompiling them
         run: ./scripts/ci/release.sh
-
-      - name: release
-        uses: actions/create-release@v1
-        id: create_release
-        with:
-          draft: false
-          prerelease: false
-          release_name: ${{ steps.version.outputs.version }}
-          tag_name: ${{ github.ref }}
-          body_path: CHANGELOG.md
-        env:
-          GITHUB_TOKEN: ${{ github.token }}
-      - name: Release
+      -
+        name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
         with:
+          body_path: CHANGELOG.md
+          token: ${{ github.token }}
           files: |
             ./bin/linux/amd64
             ./bin/darwin/amd64
