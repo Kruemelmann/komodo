@@ -1,6 +1,13 @@
 # komodo
 
-//TODO add desc about komodo
+Komodo is small command line tool for latex writing from the console.
+
+---
+*NOTE
+
+Blog post is coming soon:)
+
+---
 
 ## Installation
 
