@@ -14,8 +14,8 @@ bazelisk build \
     //cmd/komodo:cross_darwinarm64
 echo
 
-cp  bazel-out/*/bin/cmd/komodo/cross_linuxamd64_/cross_linuxamd64 bin/linux/amd64/komodo-linux-amd64
-cp  bazel-out/*/bin/cmd/komodo/cross_darwinamd64_/cross_darwinamd64 bin/darwin/amd64/komodo-darwin-amd64
-cp  bazel-out/*/bin/cmd/komodo/cross_darwinarm64_/cross_darwinarm64 bin/darwin/arm64/komodo-darwin-arm64
+cp  bazel-out/*/bin/cmd/komodo/cross_linuxamd64_/cross_linuxamd64 bin/linux/amd64/komodo-linux-x86_64
+cp  bazel-out/*/bin/cmd/komodo/cross_darwinamd64_/cross_darwinamd64 bin/darwin/amd64/komodo-darwin-x86_64
+cp  bazel-out/*/bin/cmd/komodo/cross_darwinarm64_/cross_darwinarm64 bin/darwin/arm64/komodo-darwin-aarch64
 
 ls bin/linux/amd64 bin/darwin/amd64 bin/darwin/arm64
