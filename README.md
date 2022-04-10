@@ -12,6 +12,11 @@ Blog post is coming soon:)
 ## Installation
 
 ```bash
+curl -L "https://github.com/kruemelmann/komodo/releases/download/v0.1.8/komodo-$(uname -s)-$(uname -m)" -o /usr/local/bin/komodo
+```
+
+```bash
+sudo chmod +x /usr/local/bin/komodo
 ```
 
 ## Usage
