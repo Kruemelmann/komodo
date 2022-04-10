@@ -30,3 +30,11 @@ go_binary(
     goos = "darwin",
     visibility = ["//visibility:public"],
 )
+
+go_binary(
+    name = "cross_darwinarm64",
+    embed = [":komodo_lib"],
+    goarch = "arm64",
+    goos = "darwin",
+    visibility = ["//visibility:public"],
+)
