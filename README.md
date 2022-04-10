@@ -8,11 +8,25 @@ Komodo is small command line tool for latex writing from the console.
 Blog post is coming soon:)
 
 ---
+## Requirements
+
+Before you can start using komodo you need to install:
+* pdflatex
+
+    Linux
+    ```bash
+    sudo apt-get install texlive-latex-base texlive-fonts-recommended texlive-fonts-extra texlive-latex-extra
+    ```
+    Mac
+    ```bash
+    brew install basictex
+    ```
+
 
 ## Installation
 
 ```bash
-curl -L "https://github.com/kruemelmann/komodo/releases/download/v0.1.8/komodo-$(uname -s)-$(uname -m)" -o /usr/local/bin/komodo
+sudo curl -L "https://github.com/kruemelmann/komodo/releases/download/v0.1.8/komodo-$(uname -s)-$(uname -m)" -o /usr/local/bin/komodo
 ```
 
 ```bash
