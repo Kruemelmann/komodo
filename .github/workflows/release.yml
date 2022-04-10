@@ -28,6 +28,9 @@ jobs:
         name : print build target folders
         run : "ls -al ./bin/linux/amd64"
       -
+        name: Make target binarys executable
+        run: "chmod -R 777 ./bin"
+      -
         name: Release
         uses: softprops/action-gh-release@v1
         if: startsWith(github.ref, 'refs/tags/')
@@ -35,6 +38,6 @@ jobs:
           body_path: CHANGELOG.md
           token: ${{ github.token }}
           files: |
-            bin/linux/amd64/komodo
-            bin/darwin/amd64/komodo
-            bin/darwin/arm64/komodo
+            ./bin/linux/amd64/komodo
+            ./bin/darwin/amd64/komodo
+            ./bin/darwin/arm64/komodo
