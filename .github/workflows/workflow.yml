@@ -1,4 +1,4 @@
-name: crosscompile komodo binarys
+name: build komodo (add test later:))
 
 on:
   push:
