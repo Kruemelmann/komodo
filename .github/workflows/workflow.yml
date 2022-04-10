@@ -1,5 +1,10 @@
-on: push
 name: crosscompile komodo binarys
+
+on:
+  push:
+    branches:
+      - main
+
 jobs:
   test-and-deploy:
     runs-on: ubuntu-latest
