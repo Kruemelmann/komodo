@@ -1,0 +1,32 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_binary", "go_library")
+
+go_library(
+    name = "komodo_lib",
+    srcs = ["main.go"],
+    importpath = "github.com/kruemelmann/komodo/cmd/komodo",
+    visibility = ["//visibility:private"],
+    deps = ["//cmd/komodo/cmd"],
+)
+
+go_binary(
+    name = "komodo",
+    embed = [":komodo_lib"],
+    visibility = ["//visibility:public"],
+)
+
+## cross compile for the docker container
+go_binary(
+    name = "cross_linuxamd64",
+    embed = [":komodo_lib"],
+    goarch = "amd64",
+    goos = "linux",
+    visibility = ["//visibility:public"],
+)
+
+go_binary(
+    name = "cross_darwinamd64",
+    embed = [":komodo_lib"],
+    goarch = "amd64",
+    goos = "darwin",
+    visibility = ["//visibility:public"],
+)

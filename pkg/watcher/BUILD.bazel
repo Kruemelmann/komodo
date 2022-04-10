@@ -1,0 +1,9 @@
+load("@io_bazel_rules_go//go:def.bzl", "go_library")
+
+go_library(
+    name = "watcher",
+    srcs = ["watch.go"],
+    importpath = "github.com/kruemelmann/komodo/pkg/watcher",
+    visibility = ["//visibility:public"],
+    deps = ["@com_github_fatih_color//:color"],
+)
