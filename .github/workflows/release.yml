@@ -38,6 +38,6 @@ jobs:
           body_path: CHANGELOG.md
           token: ${{ github.token }}
           files: |
-            ./bin/linux/amd64/komodo
             ./bin/darwin/amd64/komodo
             ./bin/darwin/arm64/komodo
+            ./bin/linux/amd64/komodo
