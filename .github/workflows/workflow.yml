@@ -27,4 +27,7 @@ jobs:
         uses: actions/upload-artifact@v2
         with:
           name: Artifacts
-          path: ./bin/
+          path: |
+              ./bin/linux/amd64
+              ./bin/darwin/amd64
+              ./bin/darwin/arm64
