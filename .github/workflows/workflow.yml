@@ -9,9 +9,10 @@ jobs:
   test-and-deploy:
     runs-on: ubuntu-latest
     steps:
-      -
-        name: Checkout
+      - name: checkout
         uses: actions/checkout@v2
+        with:
+          fetch-depth: 0
       -
         name: Install bazelisk
         run: |
@@ -20,8 +21,17 @@ jobs:
           mv bazelisk-linux-amd64 "${GITHUB_WORKSPACE}/bin/bazel"
           chmod +x "${GITHUB_WORKSPACE}/bin/bazel"
       -
+        uses: actions/setup-node@v3
+        with:
+          node-version: '16'
+      -
+        run: cd ./ui/komodo && npm install
+      -
         name: Build all assets by crosscompiling them
         run: ./scripts/ci/release.sh
+      -
+        name: Make target binarys executable
+        run: "chmod -R 777 ./bin"
       -
         name: capture build artifacts
         uses: actions/upload-artifact@v2
