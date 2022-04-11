@@ -26,7 +26,7 @@ jobs:
         with:
           node-version: '16'
       -
-        run: npm install
+        run: cd ./ui/komodo && npm install
       -
         name: Build all assets by crosscompiling them
         run: ./scripts/ci/release.sh
