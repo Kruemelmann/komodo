@@ -1,6 +1,7 @@
 import { React, useRef } from 'react';
 import * as pdfjsLib from "pdfjs-dist/build/pdf";
 import { pdfjsWorker } from "pdfjs-dist/build/pdf.worker.entry";
+import './PDFLoader.css';
 
 const PDFLoader = () => {
     var url = 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/examples/learning/helloworld.pdf';
@@ -9,8 +10,10 @@ const PDFLoader = () => {
     var loadingTask = pdfjsLib.getDocument(url);
     loadingTask.promise.then(function(pdf) {
         pdf.getPage(1).then(function(page) {
-            var scale = 1.5;
-            var viewport = page.getViewport({ scale: scale, });
+            var viewport = page.getViewport(
+                {scale: 2, }
+            );
+
             var outputScale = window.devicePixelRatio || 1;
             var canvas = document.getElementById('the-canvas');
             canvas.width = Math.floor(viewport.width * outputScale);
@@ -31,7 +34,9 @@ const PDFLoader = () => {
 
     return (
         <>
-            <canvas id="the-canvas" ></canvas>
+            <div class="canvas-container">
+                <canvas id="the-canvas" />
+            </div>
         </>
     );
 
