@@ -11,6 +11,7 @@ Blog post is coming soon:)
 ## TODOs
 * save scroll position
 * render all pages from the pdf file in the browser
+* build ui using bazel
 
 ## Requirements
 
