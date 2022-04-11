@@ -3,34 +3,47 @@ import * as pdfjsLib from "pdfjs-dist/build/pdf";
 import { pdfjsWorker } from "pdfjs-dist/build/pdf.worker.entry";
 import './PDFLoader.css';
 
+import { w3cwebsocket as W3CWebSocket } from "websocket";
+const client = new W3CWebSocket('ws://localhost:9090/ws/pdf');
+
 const PDFLoader = () => {
-    var url = 'https://raw.githubusercontent.com/mozilla/pdf.js/ba2edeae/examples/learning/helloworld.pdf';
+    var url = 'http://localhost:9090/pdf';
     const canvasRef = useRef();
 
-    var loadingTask = pdfjsLib.getDocument(url);
-    loadingTask.promise.then(function(pdf) {
-        pdf.getPage(1).then(function(page) {
-            var viewport = page.getViewport(
-                {scale: 2, }
-            );
+    const loadpdf = () => {
+        var loadingTask = pdfjsLib.getDocument(url);
+        loadingTask.promise.then(function(pdf) {
+            pdf.getPage(1).then(function(page) {
+                var viewport = page.getViewport(
+                    {scale: 2, }
+                );
 
-            var outputScale = window.devicePixelRatio || 1;
-            var canvas = document.getElementById('the-canvas');
-            canvas.width = Math.floor(viewport.width * outputScale);
-            canvas.height = Math.floor(viewport.height * outputScale);
-            canvas.style.width = Math.floor(viewport.width) + "px";
-            canvas.style.height =  Math.floor(viewport.height) + "px";
-            var context = canvas.getContext('2d');
+                var outputScale = window.devicePixelRatio || 1;
+                var canvas = document.getElementById('the-canvas');
+                canvas.width = Math.floor(viewport.width * outputScale);
+                canvas.height = Math.floor(viewport.height * outputScale);
+                canvas.style.width = Math.floor(viewport.width) + "px";
+                canvas.style.height =  Math.floor(viewport.height) + "px";
+                var context = canvas.getContext('2d');
 
-            var transform = outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null;
-            var renderContext = {
-                canvasContext: context,
-                transform: transform,
-                viewport: viewport
-            };
-            page.render(renderContext);
+                var transform = outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null;
+                var renderContext = {
+                    canvasContext: context,
+                    transform: transform,
+                    viewport: viewport
+                };
+                page.render(renderContext);
+            });
         });
-    });
+    }
+    loadpdf()
+
+    client.onopen = () => {
+      console.log('WebSocket Client Connected');
+    };
+    client.onmessage = (message) => {
+        loadpdf()
+    };
 
     return (
         <>
