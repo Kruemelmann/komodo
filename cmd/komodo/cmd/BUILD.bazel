@@ -5,12 +5,14 @@ go_library(
     srcs = [
         "build.go",
         "root.go",
+        "serve.go",
     ],
     importpath = "github.com/kruemelmann/komodo/cmd/komodo/cmd",
     visibility = ["//visibility:public"],
     deps = [
         "//pkg/command",
         "//pkg/watcher",
+        "//pkg/web",
         "@com_github_spf13_cobra//:cobra",
     ],
 )
