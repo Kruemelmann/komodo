@@ -3,6 +3,6 @@ canvas {
     height: auto;
 }
 
-.canvas-container {
+#canvas-container {
    text-align: center;
 }
