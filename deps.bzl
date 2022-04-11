@@ -13,6 +13,18 @@ def go_dependencies():
         sum = "h1:8LOYc1KYPPmyKMuN8QV2DNRWNbLo6LZ0iLs8+mlH53w=",
         version = "v1.13.0",
     )
+    go_repository(
+        name = "com_github_felixge_httpsnoop",
+        importpath = "github.com/felixge/httpsnoop",
+        sum = "h1:lvB5Jl89CsZtGIWuTcDM1E/vkVs49/Ml7JJe07l8SPQ=",
+        version = "v1.0.1",
+    )
+    go_repository(
+        name = "com_github_gorilla_handlers",
+        importpath = "github.com/gorilla/handlers",
+        sum = "h1:9lRY6j8DEeeBT10CvO9hGW0gmky0BprnvDI5vfhUHH4=",
+        version = "v1.5.1",
+    )
 
     go_repository(
         name = "com_github_gorilla_mux",
@@ -20,6 +32,13 @@ def go_dependencies():
         sum = "h1:i40aqfkR1h2SlN9hojwV5ZA91wcXFOvkdNIeFDP5koI=",
         version = "v1.8.0",
     )
+    go_repository(
+        name = "com_github_gorilla_websocket",
+        importpath = "github.com/gorilla/websocket",
+        sum = "h1:PPwGk2jz7EePpoHN/+ClbZu8SPxiqlu12wZP/3sWmnc=",
+        version = "v1.5.0",
+    )
+
     go_repository(
         name = "com_github_inconshreveable_mousetrap",
         importpath = "github.com/inconshreveable/mousetrap",
