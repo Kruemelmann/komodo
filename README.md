@@ -8,6 +8,10 @@ Komodo is small command line tool for latex writing from the console.
 Blog post is coming soon:)
 
 ---
+## TODOs
+* save scroll position
+* render all pages from the pdf file in the browser
+
 ## Requirements
 
 Before you can start using komodo you need to install:
