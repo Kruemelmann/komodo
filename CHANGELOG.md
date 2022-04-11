@@ -1,1 +1,2 @@
-* try to add release assets
+* add serve command to the cli tool
+* add react based gui
