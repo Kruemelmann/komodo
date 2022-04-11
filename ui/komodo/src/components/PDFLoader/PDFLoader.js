@@ -13,6 +13,10 @@ const PDFLoader = () => {
             var viewport = page.getViewport({ scale: scale, });
             var outputScale = window.devicePixelRatio || 1;
             var canvas = document.getElementById('the-canvas');
+            canvas.width = Math.floor(viewport.width * outputScale);
+            canvas.height = Math.floor(viewport.height * outputScale);
+            canvas.style.width = Math.floor(viewport.width) + "px";
+            canvas.style.height =  Math.floor(viewport.height) + "px";
             var context = canvas.getContext('2d');
 
             var transform = outputScale !== 1 ? [outputScale, 0, 0, outputScale, 0, 0] : null;
