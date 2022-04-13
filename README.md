@@ -10,8 +10,8 @@ Blog post is coming soon:)
 ---
 ## TODOs
 * save scroll position
-* render all pages from the pdf file in the browser
-* build ui using bazel
+* fe and be are both building with bazel (what is left is to embed the build output of the frontend directly into the backend build)
+    * some kind of depend?
 
 ## Requirements
 
