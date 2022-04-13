@@ -11,6 +11,12 @@ _TESTS = [
     "src/**/__tests__/**/*.ts*",
 ]
 
+filegroup(
+    name = "build_folder",
+    srcs = glob(["build/**"]),
+    visibility = ["//visibility:public"],
+)
+
 copy_to_bin(
     name = "copy_static_files",
     srcs = glob(
@@ -53,6 +59,7 @@ react_scripts(
         "BUILD_PATH": "./build",
     },
     output_dir = True,
+    visibility = ["//visibility:public"],
 )
 
 nodejs_test(

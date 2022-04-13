@@ -18,12 +18,15 @@ gazelle(
 go_library(
     name = "embed_files",
     srcs = ["embed.go"],
+    data = [
+        "//ui/komodo:build_folder",
+    ],
     embedsrcs = [
-        "//ui/komodo/build",  # keep
+        "//ui/komodo:build_folder",  # keep
     ],
     importpath = "github.com/kruemelmann/komodo/",
+    #deps = [
+    #"//ui/komodo:build", # keep
+    #]
     visibility = ["//visibility:public"],
-    deps = [
-        "//ui/komodo:build", # keep
-    ]
 )
