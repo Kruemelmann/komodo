@@ -42,7 +42,6 @@ go_register_toolchains(version = "1.18")
 
 gazelle_dependencies()
 
-
 ############################################################
 #
 # Node.js

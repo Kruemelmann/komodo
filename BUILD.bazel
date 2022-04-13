@@ -16,8 +16,14 @@ gazelle(
 )
 
 go_library(
-    name = "komodo",
+    name = "embed_files",
     srcs = ["embed.go"],
+    embedsrcs = [
+        "//ui/komodo/build",  # keep
+    ],
     importpath = "github.com/kruemelmann/komodo/",
     visibility = ["//visibility:public"],
+    deps = [
+        "//ui/komodo:build", # keep
+    ]
 )

@@ -5,7 +5,9 @@ go_library(
     srcs = ["main.go"],
     importpath = "github.com/kruemelmann/komodo/cmd/komodo",
     visibility = ["//visibility:private"],
-    deps = ["//cmd/komodo/cmd"],
+    deps = [
+        "//cmd/komodo/cmd",
+    ],
 )
 
 go_binary(
