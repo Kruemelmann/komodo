@@ -3,7 +3,6 @@ package web
 import (
 	"log"
 	"net/http"
-	"time"
 
 	"github.com/gorilla/websocket"
 )
@@ -14,17 +13,21 @@ var upgrader = websocket.Upgrader{
 	},
 }
 
+var ws_connection *websocket.Conn
+
+//TODO later add line changed to this
+func UpdateGui() {
+	if ws_connection != nil {
+		ws_connection.WriteJSON("changed")
+	}
+}
+
 func BuildPdfWebsocket() func(w http.ResponseWriter, r *http.Request) {
 	return func(w http.ResponseWriter, r *http.Request) {
 		con, err := upgrader.Upgrade(w, r, nil)
 		if err != nil {
 			log.Fatal(err)
 		}
-		defer con.Close()
-		//TODO remove polling and add notify from watcher
-		for {
-			time.Sleep(5 * time.Second)
-			con.WriteJSON("changed")
-		}
+		ws_connection = con
 	}
 }

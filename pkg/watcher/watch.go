@@ -5,6 +5,7 @@ import (
 	"time"
 
 	"github.com/fatih/color"
+	"github.com/kruemelmann/komodo/pkg/web"
 )
 
 type buildFunc func(string) error
@@ -28,8 +29,10 @@ func WatchFile(filePath string, buildfunc buildFunc) error {
 				color.Red("%s\n", err)
 			}
 			dt := time.Now()
-
+			//TODO refactor this logic to different function
 			color.Green("%s rebuild %s\n", dt.Format("02.01.2006 15:04:05"), filePath)
+			web.UpdateGui()
+
 			initialStat = stat
 		}
 
