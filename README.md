@@ -10,7 +10,6 @@ Blog post is coming soon:)
 ---
 ## TODOs
 * save scroll position
-* remove the 5 sec spam on the websocket and implement observer from the 'websocket-worker' to the filewatcher
 * fe and be are both building with bazel (what is left is to embed the build output of the frontend directly into the backend build)
     * some kind of depend?
 
