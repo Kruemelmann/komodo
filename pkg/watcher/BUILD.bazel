@@ -5,5 +5,8 @@ go_library(
     srcs = ["watch.go"],
     importpath = "github.com/kruemelmann/komodo/pkg/watcher",
     visibility = ["//visibility:public"],
-    deps = ["@com_github_fatih_color//:color"],
+    deps = [
+        "//pkg/web:web",
+        "@com_github_fatih_color//:color",
+    ],
 )

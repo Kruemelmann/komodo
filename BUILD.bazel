@@ -33,4 +33,3 @@ go_library(
     importpath = "github.com/kruemelmann/komodo",
     visibility = ["//visibility:public"],
 )
-
