@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"fmt"
+	"path/filepath"
+	"strings"
 
 	"github.com/kruemelmann/komodo/pkg/command"
 	"github.com/kruemelmann/komodo/pkg/watcher"
@@ -39,6 +41,9 @@ var buildCmd = &cobra.Command{
 
 func buildCommand(fname string) error {
 	//TODO Read this
+	command.CommandRun("pdflatex", fname)
+	command.CommandRun("bibtex", strings.TrimSuffix(fname, filepath.Ext(fname)))
+	command.CommandRun("pdflatex", fname)
 	command.CommandRun("pdflatex", fname)
 	return nil
 }

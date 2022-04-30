@@ -1,0 +1,4 @@
+### ignore all build artifacts to have a clean example
+
+simple.*
+!simple.tex
