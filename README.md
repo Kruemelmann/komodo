@@ -4,12 +4,7 @@ Komodo is small command line tool for latex writing from the console.
 
 ![build status](https://github.com/kruemelmann/komodo/actions/workflows/workflow.yml/badge.svg)
 ![release status](https://github.com/kruemelmann/komodo/actions/workflows/release.yml/badge.svg)
----
-*NOTE
 
-Blog post is coming soon:)
-
----
 ## TODOs
 * fe and be are both building with bazel (what is left is to embed the build output of the frontend directly into the backend build)
     * some kind of depend?
