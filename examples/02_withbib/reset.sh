@@ -1,3 +1,5 @@
 #!/bin/bash
 
-rm simple.aux simple.log simple.pdf
+mv withbib.tex save.tex
+rm withbib.*
+mv save.tex withbib.tex

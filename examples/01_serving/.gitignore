@@ -1,4 +1,4 @@
 ### ignore all build artifacts to have a clean example
 
-withbib.*
-!withbib.tex
+serving.*
+!serving.tex

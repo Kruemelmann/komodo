@@ -1,4 +1,4 @@
 #!/bin/bash
 
-echo "komodo build -f serving.tex"
-komodo build -f serving.tex
+echo "komodo build -f withbib.tex"
+komodo build -f withbib.tex

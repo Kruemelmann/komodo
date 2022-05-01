@@ -40,7 +40,6 @@ var buildCmd = &cobra.Command{
 }
 
 func buildCommand(fname string) error {
-	//TODO Read this
 	command.CommandRun("pdflatex", fname)
 	command.CommandRun("bibtex", strings.TrimSuffix(fname, filepath.Ext(fname)))
 	command.CommandRun("pdflatex", fname)
