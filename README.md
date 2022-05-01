@@ -2,6 +2,8 @@
 
 Komodo is small command line tool for latex writing from the console.
 
+![build status](https://github.com/kruemelmann/komodo/actions/workflows/workflow.yml/badge.svg)
+![release status](https://github.com/kruemelmann/komodo/actions/workflows/release.yml/badge.svg)
 ---
 *NOTE
 
