@@ -1,4 +1,5 @@
-name: build komodo (add test later:))
+name: build komodo 
+# (add test later:))
 
 on:
   push:
