@@ -6,9 +6,8 @@ import (
 )
 
 func CommandRun(cmdstr string, filename string) {
-	cmd := exec.Command(cmdstr, filename)
-	err := cmd.Run()
+	out, err := exec.Command(cmdstr, filename).Output()
 	if err != nil {
-		log.Fatal(err)
+		log.Printf("%s, %s", err, out)
 	}
 }

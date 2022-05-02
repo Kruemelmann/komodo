@@ -2,6 +2,8 @@ package cmd
 
 import (
 	"fmt"
+	"io/ioutil"
+	"log"
 	"path/filepath"
 	"strings"
 
@@ -39,10 +41,29 @@ var buildCmd = &cobra.Command{
 	},
 }
 
+//TODO refactor to own package
 func buildCommand(fname string) error {
 	command.CommandRun("pdflatex", fname)
-	command.CommandRun("bibtex", strings.TrimSuffix(fname, filepath.Ext(fname)))
+	if fileWithExtensionExist(".bib") {
+		command.CommandRun("bibtex", strings.TrimSuffix(fname, filepath.Ext(fname)))
+	}
 	command.CommandRun("pdflatex", fname)
 	command.CommandRun("pdflatex", fname)
 	return nil
+}
+
+func fileWithExtensionExist(ext string) bool {
+	found := false
+	files, err := ioutil.ReadDir(".")
+	if err != nil {
+		log.Fatal(err)
+	}
+	for _, file := range files {
+		if file.Mode().IsRegular() {
+			if filepath.Ext(file.Name()) == ext {
+				found = true
+			}
+		}
+	}
+	return found
 }
