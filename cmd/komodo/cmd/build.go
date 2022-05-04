@@ -46,8 +46,8 @@ func buildCommand(fname string) error {
 	command.CommandRun("pdflatex", fname)
 	if fileWithExtensionExist(".bib") {
 		command.CommandRun("bibtex", strings.TrimSuffix(fname, filepath.Ext(fname)))
+		command.CommandRun("pdflatex", fname)
 	}
-	command.CommandRun("pdflatex", fname)
 	command.CommandRun("pdflatex", fname)
 	return nil
 }
