@@ -15,20 +15,12 @@ gazelle(
     command = "update-repos",
 )
 
-#TODO
-# deps = [
-#   "//ui/komodo:build", # keep
-# ]
-
 # gazelle:resolve go github.com/kruemelmann/komodo //komodo:embed_files
 go_library(
     name = "komodo",
     srcs = ["embed.go"],
-    data = [
-        "//ui/komodo:build_folder",
-    ],
     embedsrcs = [
-        "//ui/komodo:build_folder",  # keep
+        "//ui/komodo:build",  # keep
     ],
     importpath = "github.com/kruemelmann/komodo",
     visibility = ["//visibility:public"],

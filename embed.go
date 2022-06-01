@@ -2,5 +2,5 @@ package komodo
 
 import "embed"
 
-//go:embed ui/komodo/build/*
+//go:embed bazel-out/*/bin/ui/komodo/build
 var FrontendFS embed.FS
