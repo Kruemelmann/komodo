@@ -4,7 +4,7 @@ import { pdfjsWorker } from "pdfjs-dist/build/pdf.worker.entry";
 import './PDFLoader.css';
 
 import { w3cwebsocket as W3CWebSocket } from "websocket";
-const client = new W3CWebSocket('ws://localhost:9090/ws/pdf');
+const client = new W3CWebSocket('ws://127.0.0.1:9090/ws/pdf');
 
 const PDFLoader = () => {
     var url = 'http://localhost:9090/pdf';
