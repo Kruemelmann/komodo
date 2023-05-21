@@ -47,6 +47,25 @@ const PDFLoader = () => {
             viewport: viewport
         };
         page.render(renderContext);
+        var textLayerDiv = document.getElementById('textLayer');
+        page.getTextContent().then(function(textContent){
+            //TODO render text content here
+            var textLayer = document.querySelector(".textLayer");
+
+            textLayer.style.left = canvas.offsetLeft + 'px';
+            textLayer.style.top = canvas.offsetTop + 'px';
+            textLayer.style.height = canvas.offsetHeight + 'px';
+            textLayer.style.width = canvas.offsetWidth + 'px';
+
+            // Pass the data to the method for rendering of text over the pdf canvas.
+            pdfjsLib.renderTextLayer({
+                textContent: textContent,
+                container: textLayer,
+                viewport: viewport,
+                textDivs: []
+            });
+        })
+
         page_num++;
 
     }
@@ -64,8 +83,9 @@ const PDFLoader = () => {
 
     return (
         <>
-            <div id="canvas-container">
-            </div>
+            <link href="//mozilla.github.io/pdf.js/web/viewer.css" rel="stylesheet" type="text/css" />
+            <div id="canvas-container"></div>
+            <div class="textLayer"></div>
         </>
     );
 
