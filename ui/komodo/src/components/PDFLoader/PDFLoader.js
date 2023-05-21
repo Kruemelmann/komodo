@@ -4,10 +4,12 @@ import { pdfjsWorker } from "pdfjs-dist/build/pdf.worker.entry";
 import './PDFLoader.css';
 
 import { w3cwebsocket as W3CWebSocket } from "websocket";
-const client = new W3CWebSocket('ws://127.0.0.1:9090/ws/pdf');
+
+var currentLocation = window.location.hostname+":"+window.location.port;
+var client = new WebSocket('ws://'+currentLocation+'/ws/pdf');
 
 const PDFLoader = () => {
-    var url = 'http://localhost:9090/pdf';
+    var url = 'http://' + currentLocation + '/pdf';
     const loadpdf = () => {
         var canvas_container = document.getElementById('canvas-container');
         canvas_container.innerHTML = '';
@@ -49,7 +51,6 @@ const PDFLoader = () => {
         page.render(renderContext);
         var textLayerDiv = document.getElementById('textLayer');
         page.getTextContent().then(function(textContent){
-            //TODO render text content here
             var textLayer = document.querySelector(".textLayer");
 
             textLayer.style.left = canvas.offsetLeft + 'px';
@@ -57,7 +58,6 @@ const PDFLoader = () => {
             textLayer.style.height = canvas.offsetHeight + 'px';
             textLayer.style.width = canvas.offsetWidth + 'px';
 
-            // Pass the data to the method for rendering of text over the pdf canvas.
             pdfjsLib.renderTextLayer({
                 textContent: textContent,
                 container: textLayer,
@@ -83,7 +83,6 @@ const PDFLoader = () => {
 
     return (
         <>
-            <link href="//mozilla.github.io/pdf.js/web/viewer.css" rel="stylesheet" type="text/css" />
             <div id="canvas-container"></div>
             <div class="textLayer"></div>
         </>
