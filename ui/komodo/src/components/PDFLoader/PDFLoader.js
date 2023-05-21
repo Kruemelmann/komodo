@@ -10,32 +10,48 @@ var client = new WebSocket('ws://'+currentLocation+'/ws/pdf');
 
 const PDFLoader = () => {
     var url = 'http://' + currentLocation + '/pdf';
+
     const loadpdf = () => {
         var canvas_container = document.getElementById('canvas-container');
-        canvas_container.innerHTML = '';
+        //TODO delete all older canvas -> flickering and "scrolling" up
+        //canvas_container.innerHTML = '';
 
         var loadingTask = pdfjsLib.getDocument(url);
         loadingTask.promise.then(async function(pdf) {
             for (let i = 1; i <= pdf.numPages; i++) {
-               let a = await pdf.getPage(i).then(renderpage);
+                let a = await pdf.getPage(i).then((page) => {
+                    renderpage(page, pdf.numPages)
+                });
+
             }
         });
     }
 
-    let page_num = 0
-    const renderpage = (page) => {
+    const renderpage = (page, numPages) => {
         var canvas_container = document.getElementById('canvas-container');
         var viewport = page.getViewport(
             {scale: 2, }
         );
         var outputScale = window.devicePixelRatio || 1;
 
-        let node = document.createElement("canvas");
-        node.setAttribute("id", "the-canvas"+page_num);
-        canvas_container.appendChild(node);
+        let page_num = page._pageIndex
+        let numRenderedPages = document.getElementById("canvas-container").childElementCount;
+        //create new canvas element if needed
+        if (page_num >= numRenderedPages) {
+            let node = document.createElement("canvas");
+            node.setAttribute("id", "the-canvas"+page_num);
+            canvas_container.appendChild(node);
+        }
+        //remove canvas elements if they are not needed
+        let lastPageIndex = numPages
+        if (lastPageIndex < numRenderedPages) {
+            for (let i = 0, len = (numRenderedPages - lastPageIndex); i < len; i++) {
+                canvas_container.removeChild(canvas_container.lastChild);
+            }
+        }
+
 
         var canvas = document.getElementById('the-canvas'+page_num);
-
         canvas.width = Math.floor(viewport.width * outputScale);
         canvas.height = Math.floor(viewport.height * outputScale);
         canvas.style.width = Math.floor(viewport.width) + "px";
@@ -65,9 +81,6 @@ const PDFLoader = () => {
                 textDivs: []
             });
         })
-
-        page_num++;
-
     }
 
     useEffect(()=>{
