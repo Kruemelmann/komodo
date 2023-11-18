@@ -35,7 +35,7 @@ komodo build -f <filename>.tex
 ### Build pdf from LaTex with a watcher
 (You dont need to run the script everytime you change the tex-File)
 ```bash
-komodo build -f <filename>.tex -w
+komodo build -w -f <filename>.tex
 ```
 
 ### Build pdf (with watcher) and serve it to your browser
