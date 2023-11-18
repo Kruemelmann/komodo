@@ -29,6 +29,8 @@ const PDFLoader = () => {
 
     const renderpage = (page, numPages) => {
         var canvas_container = document.getElementById('canvas-container');
+        var textlayer_container = document.getElementById('textlayer-container');
+
         var viewport = page.getViewport(
             {scale: 2, }
         );
@@ -36,17 +38,25 @@ const PDFLoader = () => {
 
         let page_num = page._pageIndex
         let numRenderedPages = document.getElementById("canvas-container").childElementCount;
-        //create new canvas element if needed
+        // -> no need to calculate the textcontainer since they are equal
+
+        //create new page elements if needed
         if (page_num >= numRenderedPages) {
-            let node = document.createElement("canvas");
-            node.setAttribute("id", "the-canvas"+page_num);
-            canvas_container.appendChild(node);
+            let node_canvas = document.createElement("canvas");
+            node_canvas.setAttribute("id", "the-canvas"+page_num);
+            canvas_container.appendChild(node_canvas);
+
+            let node_textlayer = document.createElement("div");
+            node_textlayer.classList.add("textlayer"+page_num);
+            node_textlayer.classList.add("textLayer");
+            textlayer_container.appendChild(node_textlayer);
         }
-        //remove canvas elements if they are not needed
+        //remove page elements if they are not needed
         let lastPageIndex = numPages
         if (lastPageIndex < numRenderedPages) {
             for (let i = 0, len = (numRenderedPages - lastPageIndex); i < len; i++) {
                 canvas_container.removeChild(canvas_container.lastChild);
+                textlayer_container.removeChild(textlayer_container.lastChild);
             }
         }
 
@@ -65,14 +75,16 @@ const PDFLoader = () => {
             viewport: viewport
         };
         page.render(renderContext);
-        var textLayerDiv = document.getElementById('textLayer');
-        page.getTextContent().then(function(textContent){
-            var textLayer = document.querySelector(".textLayer");
 
+        page.getTextContent().then(function(textContent){
+            var textLayer = document.querySelector('.textlayer'+page_num);
+            //var textLayer = document.querySelector(".textLayer");
+
+            // FIXME offsetTop need to be calculated for every page
             textLayer.style.left = canvas.offsetLeft + 'px';
             textLayer.style.top = canvas.offsetTop + 'px';
-            textLayer.style.height = canvas.offsetHeight + 'px';
             textLayer.style.width = canvas.offsetWidth + 'px';
+            textLayer.style.height = canvas.offsetHeight + 'px';
 
             pdfjsLib.renderTextLayer({
                 textContent: textContent,
@@ -96,8 +108,8 @@ const PDFLoader = () => {
 
     return (
         <>
-            <div id="canvas-container"></div>
-            <div class="textLayer"></div>
+            <div id="canvas-container" />
+            <div id="textlayer-container" />
         </>
     );
 
