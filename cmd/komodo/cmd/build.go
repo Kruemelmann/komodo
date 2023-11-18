@@ -41,17 +41,6 @@ var buildCmd = &cobra.Command{
 	},
 }
 
-//TODO refactor to own package
-func buildCommand(fname string) error {
-	command.CommandRun("pdflatex", fname)
-	if fileWithExtensionExist(".bib") {
-		command.CommandRun("bibtex", strings.TrimSuffix(fname, filepath.Ext(fname)))
-		command.CommandRun("pdflatex", fname)
-	}
-	command.CommandRun("pdflatex", fname)
-	return nil
-}
-
 func fileWithExtensionExist(ext string) bool {
 	found := false
 	files, err := ioutil.ReadDir(".")
@@ -66,4 +55,15 @@ func fileWithExtensionExist(ext string) bool {
 		}
 	}
 	return found
+}
+
+// TODO refactor to own package
+func buildCommand(fname string) error {
+	command.CommandRun("pdflatex", fname)
+	if fileWithExtensionExist(".bib") {
+		command.CommandRun("bibtex", strings.TrimSuffix(fname, filepath.Ext(fname)))
+		command.CommandRun("pdflatex", fname)
+	}
+	command.CommandRun("pdflatex", fname)
+	return nil
 }

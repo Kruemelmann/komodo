@@ -22,7 +22,7 @@ Before you can start using komodo you need to install:
 ## Installation
 
 ```bash
-sudo curl -L "https://github.com/kruemelmann/komodo/releases/download/v0.1.17/komodo-$(uname -s)-$(uname -m)" -o /usr/local/bin/komodo && sudo chmod +x /usr/local/bin/komodo
+sudo curl -L "https://github.com/kruemelmann/komodo/releases/download/v0.1.18/komodo-$(uname -s)-$(uname -m)" -o /usr/local/bin/komodo && sudo chmod +x /usr/local/bin/komodo
 ```
 
 ## Usage
