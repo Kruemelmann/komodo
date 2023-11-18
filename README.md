@@ -44,6 +44,10 @@ komodo build -f <filename>.tex -w
 komodo serve -f <filename>.tex
 ```
 
+## Supported platforms
+
+At the moment I only support x86 or ARM based Mac or x86 Linux in komodo but if you want to use another platform and can't build komodo from source you can open an issue and I will integrate a build for your preferred platform in the CI pipeline.
+
 
 ## Contributing
 
