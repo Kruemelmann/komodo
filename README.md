@@ -27,21 +27,31 @@ sudo curl -L "https://github.com/kruemelmann/komodo/releases/download/v0.1.18/ko
 
 ## Usage
 
-### Simply build pdf from LaTex File
+### Build command
+
+#### Simply build pdf from LaTex File
 ```bash
 komodo build -f <filename>.tex
 ```
 
-### Build pdf from LaTex with a watcher
+#### Build pdf from LaTex with a watcher
 (You dont need to run the script everytime you change the tex-File)
 ```bash
 komodo build -w -f <filename>.tex
 ```
 
-### Build pdf (with watcher) and serve it to your browser
+### Serve command
+
+#### Build pdf (with watcher) and serve it to your browser
 (The ui has hot reload of course otherwise the watcher in the backend would be useless)
 ```bash
 komodo serve -f <filename>.tex
+```
+
+#### Serve on a different port
+The default port of komodo is 9090 but if you want to start it on a different port you can simply do this with the port flag.
+```bash
+komodo serve -p 8081 -f <filename>.tex
 ```
 
 ## Supported platforms
