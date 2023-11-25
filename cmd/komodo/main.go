@@ -14,8 +14,8 @@ func main() {
 func welcomebanner() {
 
 	fmt.Println(" _                        _      ")
-	fmt.Println("| |__ ___  _ __   ___  __| | ___ ")
-	fmt.Println("| / // . \\| '  \\ / . \\/ .` |/ . \\")
+	fmt.Println("| |__ ___  _ ___  ___  __| | ___ ")
+	fmt.Println("| / // . \\| '   \\/ . \\/ .` |/ . \\")
 	fmt.Println("|_\\_\\\\___/|_|_|_|\\___/\\__,_|\\___/")
 	fmt.Println("")
 	fmt.Println("")
