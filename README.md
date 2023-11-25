@@ -59,6 +59,20 @@ If you like to run komodo on a random free port you can add the random_port flag
 komodo serve --random_port -f <filename>.tex
 ```
 
+### Getting help
+To print the Helppage of komodo just run its basecommand:
+```bash
+komodo
+```
+Or add the -h flag:
+```bash
+komodo -h
+```
+If you need help with a subcommand like serve or build just run:
+```bash
+komodo <subcommand> -h
+```
+
 ## Supported platforms
 
 At the moment I only support x86 or ARM based Mac or x86 Linux in komodo but if you want to use another platform and can't build komodo from source you can open an issue and I will integrate a build for your preferred platform in the CI pipeline.
