@@ -54,6 +54,11 @@ The default port of komodo is 9090 but if you want to start it on a different po
 komodo serve -p 8081 -f <filename>.tex
 ```
 
+If you like to run komodo on a random free port you can add the random_port flag
+```bash
+komodo serve --random_port -f <filename>.tex
+```
+
 ## Supported platforms
 
 At the moment I only support x86 or ARM based Mac or x86 Linux in komodo but if you want to use another platform and can't build komodo from source you can open an issue and I will integrate a build for your preferred platform in the CI pipeline.
