@@ -1,3 +1,6 @@
+<p align="center"><img src="https://raw.githubusercontent.com/kruemelmann/komodo/main/docs/logo/logo.jpg" width="360"></p>
+
+
 # komodo
 ![build status](https://github.com/kruemelmann/komodo/actions/workflows/workflow.yml/badge.svg)
 ![release status](https://github.com/kruemelmann/komodo/actions/workflows/release.yml/badge.svg)
