@@ -1,4 +1,4 @@
-<p align="center"><img src="https://raw.githubusercontent.com/kruemelmann/komodo/main/docs/logo/logo.jpg" width="360"></p>
+<p align="center"><img src="https://raw.githubusercontent.com/kruemelmann/komodo/main/docs/logo/logo.png" width="360"></p>
 
 
 # komodo
