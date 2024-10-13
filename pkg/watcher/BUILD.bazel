@@ -6,7 +6,7 @@ go_library(
     importpath = "github.com/kruemelmann/komodo/pkg/watcher",
     visibility = ["//visibility:public"],
     deps = [
-        "//pkg/web:web",
+        "//pkg/web",
         "@com_github_fatih_color//:color",
     ],
 )

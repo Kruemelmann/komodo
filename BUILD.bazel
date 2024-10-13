@@ -1,4 +1,3 @@
-load("@io_bazel_rules_go//go:def.bzl", "go_library")
 load("@bazel_gazelle//:def.bzl", "gazelle")
 
 # gazelle : exclude build
@@ -13,15 +12,4 @@ gazelle(
         "-prune",
     ],
     command = "update-repos",
-)
-
-# gazelle:resolve go github.com/kruemelmann/komodo //komodo:embed_files
-go_library(
-    name = "komodo",
-    srcs = ["embed.go"],
-    embedsrcs = [
-        "//ui/komodo:build",  # keep
-    ],
-    importpath = "github.com/kruemelmann/komodo",
-    visibility = ["//visibility:public"],
 )

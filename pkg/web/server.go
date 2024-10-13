@@ -10,7 +10,7 @@ import (
 
 	"github.com/gorilla/handlers"
 	"github.com/gorilla/mux"
-	"github.com/kruemelmann/komodo"
+	"github.com/kruemelmann/komodo/pkg/ui"
 )
 
 func StartServer(host, port, filename string) {
@@ -19,13 +19,7 @@ func StartServer(host, port, filename string) {
 	r.HandleFunc("/ws/pdf", BuildPdfWebsocket())
 	r.HandleFunc("/pdf", ReadFileHandler(filename))
 
-	//search for the frontend files in the filesystem
-	matches, _ := fs.Glob(komodo.FrontendFS, "*/*/*/ui/komodo/build")
-	if len(matches) != 1 {
-		panic("missmatching count of frontend build files in FS")
-	}
-
-	feRoot, _ := fs.Sub(komodo.FrontendFS, matches[0])
+	feRoot, _ := fs.Sub(ui.FrontendFS, "komodo")
 	buildHandler := http.FileServer(http.FS(feRoot))
 	r.PathPrefix("/").Handler(buildHandler)
 

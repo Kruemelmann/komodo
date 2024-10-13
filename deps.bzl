@@ -16,14 +16,14 @@ def go_dependencies():
     go_repository(
         name = "com_github_felixge_httpsnoop",
         importpath = "github.com/felixge/httpsnoop",
-        sum = "h1:lvB5Jl89CsZtGIWuTcDM1E/vkVs49/Ml7JJe07l8SPQ=",
-        version = "v1.0.1",
+        sum = "h1:s/nj+GCswXYzN5v2DpNMuMQYe+0DDwt5WVCU6CWBdXk=",
+        version = "v1.0.3",
     )
     go_repository(
         name = "com_github_gorilla_handlers",
         importpath = "github.com/gorilla/handlers",
-        sum = "h1:9lRY6j8DEeeBT10CvO9hGW0gmky0BprnvDI5vfhUHH4=",
-        version = "v1.5.1",
+        sum = "h1:cLTUSsNkgcwhgRqvCNmdbRWG0A3N4F+M2nWKdScwyEE=",
+        version = "v1.5.2",
     )
 
     go_repository(
@@ -57,6 +57,13 @@ def go_dependencies():
         sum = "h1:yVuAays6BHfxijgZPzw+3Zlu5yQgKGP2/hcQbHb7S9Y=",
         version = "v0.0.14",
     )
+    go_repository(
+        name = "com_github_rs_cors",
+        importpath = "github.com/rs/cors",
+        sum = "h1:eU3gRzXLRK57F5rKMGMZURNdIG4EoAmX8k94r9wXWHA=",
+        version = "v1.11.1",
+    )
+
     go_repository(
         name = "com_github_russross_blackfriday_v2",
         importpath = "github.com/russross/blackfriday/v2",
