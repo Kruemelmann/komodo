@@ -25,13 +25,13 @@ func WatchFile(filePath string, buildfunc buildFunc) error {
 
 		if stat.Size() != initialStat.Size() || stat.ModTime() != initialStat.ModTime() {
 			err := buildfunc(filePath)
-			if err != nil {
-				color.Red("%s\n", err)
-			}
 			dt := time.Now()
-			//TODO refactor this logic to different function
-			color.Green("%s rebuild %s\n", dt.Format("02.01.2006 15:04:05"), filePath)
-			web.UpdateGui()
+			if err != nil {
+				color.Red("%s build failed for %s: %s\n", dt.Format("02.01.2006 15:04:05"), filePath, err)
+			} else {
+				color.Green("%s rebuild %s\n", dt.Format("02.01.2006 15:04:05"), filePath)
+				web.UpdateGui()
+			}
 
 			initialStat = stat
 		}

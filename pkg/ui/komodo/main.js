@@ -1,8 +1,7 @@
 var pdfjsLib = window.pdfjsLib || globalThis.pdfjsLib;
 
 var currentLocation = window.location.hostname+":"+window.location.port;
-var client = new WebSocket('ws://'+currentLocation+'/ws/pdf');
-
+var client;
 var url = 'http://' + currentLocation + '/pdf';
 
 const loadpdf = () => {
@@ -119,7 +118,7 @@ const renderpage = (page, numPages, pageIndex) => {
         // Modern PDF.js text layer rendering
         if (pdfjsLib.renderTextLayer) {
             pdfjsLib.renderTextLayer({
-                textContent: textContent,
+                textContentSource: textContent,
                 container: textLayer,
                 viewport: viewport,
                 textDivs: []
@@ -130,6 +129,32 @@ const renderpage = (page, numPages, pageIndex) => {
     });
 }
 
+
+function connectWebSocket() {
+    client = new WebSocket('ws://'+currentLocation+'/ws/pdf');
+    
+    client.onopen = () => {
+        console.log('WebSocket Client Connected');
+    };
+    
+    client.onmessage = (message) => {
+        console.log('WebSocket message received:', message.data);
+        loadpdf();
+    };
+    
+    client.onclose = (event) => {
+        console.log('WebSocket connection closed:', event.code, event.reason);
+        // Reconnect after 1 second
+        setTimeout(() => {
+            console.log('Attempting to reconnect WebSocket...');
+            connectWebSocket();
+        }, 1000);
+    };
+    
+    client.onerror = (error) => {
+        console.error('WebSocket error:', error);
+    };
+}
 
 function initializeApp() {
     if (!pdfjsLib) {
@@ -144,13 +169,8 @@ function initializeApp() {
     // Configure PDF.js worker for newer versions
     pdfjsLib.GlobalWorkerOptions.workerSrc = 'https://cdnjs.cloudflare.com/ajax/libs/pdf.js/3.11.174/pdf.worker.min.js';
     
-    client.onopen = () => {
-        console.log('WebSocket Client Connected');
-    };
-    client.onmessage = (message) => {
-        loadpdf()
-    };
-    loadpdf()
+    connectWebSocket();
+    loadpdf();
 }
 
 window.addEventListener('load', function () {

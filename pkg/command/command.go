@@ -5,9 +5,17 @@ import (
 	"os/exec"
 )
 
-func CommandRun(cmdstr string, filename string) {
-	out, err := exec.Command(cmdstr, filename).Output()
+func CommandRun(cmdstr string, filename string) error {
+	return CommandRunInDir(cmdstr, filename, ".")
+}
+
+func CommandRunInDir(cmdstr string, filename string, workingDir string) error {
+	cmd := exec.Command(cmdstr, filename)
+	cmd.Dir = workingDir
+	out, err := cmd.CombinedOutput()
 	if err != nil {
-		log.Printf("%s, %s", err, out)
+		log.Printf("Command %s failed: %s\nOutput: %s", cmdstr, err, out)
+		return err
 	}
+	return nil
 }

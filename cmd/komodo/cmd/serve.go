@@ -20,6 +20,7 @@ func init() {
 	serveCmd.PersistentFlags().StringP("filename", "f", "", "Specify the filename of the LaTex File")
 	serveCmd.PersistentFlags().StringP("port", "p", "", "Specify the port on with komodo should start the webserver")
 	serveCmd.PersistentFlags().BoolP("random_port", "", false, "Specify if komodo should start on a random free port")
+	serveCmd.PersistentFlags().StringP("directory", "d", ".", "Specify the directory where commands should be executed")
 }
 
 // serveCmd represents the serve command
@@ -31,8 +32,12 @@ var serveCmd = &cobra.Command{
 		fname, _ := cmd.Flags().GetString("filename")
 		port, _ := cmd.Flags().GetString("port")
 		rport, _ := cmd.Flags().GetBool("random_port")
+		directory, _ := cmd.Flags().GetString("directory")
 
-		go watcher.WatchFile(fname, buildCommand)
+		buildFunc := func(filename string) error {
+			return buildCommandInDir(filename, directory)
+		}
+		go watcher.WatchFile(fname, buildFunc)
 
 		if rport {
 			random_port, err := getFreePort()
