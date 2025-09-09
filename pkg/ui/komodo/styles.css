@@ -1,18 +1,68 @@
+body {
+    margin: 0;
+    padding: 20px;
+    background-color: #f0f0f0;
+}
+
 canvas {
-    width: 100%;
-    height: auto;
+    display: block;
+    margin: 0 auto 20px auto;
+    box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+    background-color: white;
 }
 
 #canvas-container {
-   text-align: center;
+    text-align: center;
+    position: relative;
 }
 
-/*single page*/
-#textlayer-container > div {
+#textlayer-container {
     position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    pointer-events: none;
 }
 
-/*single line on every page*/
-#textlayer-container > div > * {
+/* PDF.js text layer styling */
+.textLayer {
     position: absolute;
+    left: 0;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    overflow: hidden;
+    opacity: 0.2;
+    line-height: 1.0;
+}
+
+.textLayer > span {
+    color: transparent;
+    position: absolute;
+    white-space: pre;
+    cursor: text;
+    transform-origin: 0% 0%;
+}
+
+.textLayer .highlight {
+    margin: -1px;
+    padding: 1px;
+    background-color: rgba(180, 0, 170, 1);
+    border-radius: 4px;
+}
+
+.textLayer .highlight.begin {
+    border-radius: 4px 0px 0px 4px;
+}
+
+.textLayer .highlight.end {
+    border-radius: 0px 4px 4px 0px;
+}
+
+.textLayer .highlight.middle {
+    border-radius: 0px;
+}
+
+.textLayer .highlight.selected {
+    background-color: rgba(0, 100, 0, 1);
 }
